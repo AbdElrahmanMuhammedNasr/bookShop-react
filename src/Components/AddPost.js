@@ -21,7 +21,7 @@ const AddPost = () => {
     const classes = useStyles();
     return (
         <form className={classes.root} noValidate autoComplete="off">
-            <h3>Publish Post</h3>
+            <h3 style={{textAlign: 'center'}}>Publish Post</h3>
 
             <div className={classes.divStyle}>
 

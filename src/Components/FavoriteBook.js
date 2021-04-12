@@ -11,34 +11,46 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#f3e6dd',
         height: '25vh',
         margin: '10px auto',
-        borderRadius: '10px'
+        borderRadius: '10px',
+        textAlign:'center'
+
     },
 
     imgHome: {
         height: '25vh',
 
+
     }
 }))
 
-const BestBook = () => {
+const FavoriteBook = () => {
     const classes = useStyles();
+    const [books, setBooks] = React.useState([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 1, 1, 1, 1, 1, 1]);
+
 
     return (
         <>
             <Container maxWidth="lg" className={classes.containerStyle}>
-
                 <img src={logo} className={classes.imgHome}/>
-
             </Container>
             <br></br>
-            <section className="row">
-                <Book className="col-sm-4"/>
-                <Book className="col-sm-4"/>
-                <Book className="col-sm-4"/>
-                <Book className="col-sm-4"/>
+            <br></br>
+            <br></br>
+            <div
+                className="d-flex justify-content-center row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-12  g-4">
+                {
+                    books.map(b => {
+                        return (
+                            <section className="col  d-flex justify-content-center">
+                                <Book/>
+                            </section>
+                        );
+                    })
+                }
 
-            </section>
+
+            </div>
         </>
     )
 }
-export default BestBook
+export default FavoriteBook

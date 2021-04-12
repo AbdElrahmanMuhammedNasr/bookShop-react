@@ -1,9 +1,9 @@
-import {BottomNavigation, BottomNavigationAction, Button, ButtonGroup, Chip, Container} from "@material-ui/core";
+import {Chip, Container} from "@material-ui/core";
 import React from 'react';
 import logo from '../assest/book.svg'
 import {makeStyles} from "@material-ui/core/styles";
 
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import Book from "../UI/Book";
 
 
@@ -68,9 +68,9 @@ const Home = (props) => {
             <div style={{'width': '95%', 'margin': '40px auto'}}>
                 <section className="d-flex justify-content-between">
                     <h3>Best Books</h3>
-                    <Link>
-                        view all
-                    </Link>
+
+                    <NavLink to="/bestBook">view all</NavLink>
+
                 </section>
 
                 <br></br>
@@ -87,9 +87,8 @@ const Home = (props) => {
             <div style={{'width': '95%', 'margin': '40px auto'}}>
                 <section className="d-flex justify-content-between">
                     <h3>New Books</h3>
-                    <Link>
-                        view all
-                    </Link>
+                    <NavLink to="/newBook">view all</NavLink>
+
                 </section>
 
                 <br></br>

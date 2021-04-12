@@ -16,6 +16,8 @@ import AddBook from "../Components/AddBook";
 import BestBook from "../Components/BestBook";
 import FavoriteBook from "../Components/FavoriteBook";
 import NewBook from "../Components/NewBook";
+import Footer from "../Components/Footer";
+import Login from "../Components/Login";
 
 function App() {
     let history = useHistory();
@@ -50,6 +52,7 @@ function App() {
 
             <switch>
                 <Redirect exact from={'/'} to={'/home'}/>
+                <Route path={'/login'} component={Login}/>
                 <Route path={'/home'} component={Home}/>
                 <Route path={'/favoriteBook'} component={FavoriteBook}/>
                 <Route path={'/bestBook'} component={BestBook}/>
@@ -61,6 +64,7 @@ function App() {
                 <Route path={'/addPost'} component={AddPost}/>
             </switch>
 
+            <Footer/>
 
         </div>
     );

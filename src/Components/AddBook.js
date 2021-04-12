@@ -49,7 +49,7 @@ const AddBook = () => {
 
     return (
         <form className={classes.root} noValidate autoComplete="off">
-            <h3>Add Book</h3>
+            <h3 style={{textAlign: 'center'}}>Add Book</h3>
 
             <div className={classes.divStyle}>
 
@@ -79,21 +79,26 @@ const AddBook = () => {
             </div>
 
             {/* category*/}
-            <Paper component="ul" className={classes.pap}>
-                {chipData.map((data) => {
+            {
+                chipData.length == 0 ? null :
+                    <>
+                        <Paper component="ul" className={classes.pap}>
+                            {chipData.map((data) => {
 
-                    return (
-                        <li key={data.key}>
-                            <Chip
-                                label={data.label}
-                                onDelete={handleDelete(data)}
-                                className={classes.chip}
-                            />
-                        </li>
-                    );
-                })}
+                                return (
+                                    <li key={data.key}>
+                                        <Chip
+                                            label={data.label}
+                                            onDelete={handleDelete(data)}
+                                            className={classes.chip}
+                                        />
+                                    </li>
+                                );
+                            })}
 
-            </Paper>
+                        </Paper>
+                    </>
+            }
 
             <div className={classes.divStyle}>
                 <TextField id="filled-basic"
