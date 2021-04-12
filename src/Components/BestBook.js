@@ -8,7 +8,9 @@ import Book from "../UI/Book";
 const useStyles = makeStyles((theme) => ({
 
     containerStyle: {
-        backgroundColor: '#f3e6dd',
+        // backgroundColor: '#f3e6dd',
+        backgroundColor: '#96a3e6',
+
         height: '25vh',
         margin: '10px auto',
         borderRadius: '10px',

@@ -16,6 +16,7 @@ import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import {Chip} from "@material-ui/core";
+import {NavLink} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -56,10 +57,20 @@ const Book = () => {
                 title="Paella dish"
             />
             <CardContent>
+
+                <Typography gutterBottom variant="h5" component="h2">
+                    Lizard Book
+                </Typography>
+
                 <Typography variant="body2" color="textSecondary" component="p">
                     This impressive paella is a perfect party dish and a fun meal to cook together with your
                     guests. Add 1 cup of frozen peas along with the mussels, if you like.
                 </Typography>
+
+                <NavLink to="/homo">
+                    to Book
+                </NavLink>
+
             </CardContent>
             <CardActions disableSpacing className="d-flex justify-content-between">
 

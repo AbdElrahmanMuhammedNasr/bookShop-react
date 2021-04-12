@@ -3,12 +3,15 @@ import logo from "../assest/favo.svg";
 import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import Book from "../UI/Book";
+import Skeleton from '@material-ui/lab/Skeleton';
 
 
 const useStyles = makeStyles((theme) => ({
 
     containerStyle: {
-        backgroundColor: '#f3e6dd',
+        // backgroundColor: '#f3e6dd',
+        backgroundColor: '#96a3e6',
+
         height: '25vh',
         margin: '10px auto',
         borderRadius: '10px',
@@ -38,6 +41,16 @@ const FavoriteBook = () => {
             <br></br>
             <div
                 className="d-flex justify-content-center row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-12  g-4">
+
+                <section className="col  d-flex justify-content-center">
+                    <div>
+                        <Skeleton variant="text" />
+                        <Skeleton variant="circle" width={40} height={40} />
+                        <Skeleton variant="rect" width={210} height={118} />
+                    </div>
+                </section>
+
+
                 {
                     books.map(b => {
                         return (

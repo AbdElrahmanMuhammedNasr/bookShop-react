@@ -19,6 +19,7 @@ import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 import {NavLink} from "react-router-dom";
 import CommentIcon from '@material-ui/icons/Comment';
+import {Alert, AlertTitle} from "@material-ui/lab";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -48,21 +49,35 @@ const useStyles = makeStyles((theme) => ({
 const Post = () => {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
+    const [comment, setComment] = React.useState(false);
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
+    const [commentsData, setCommentsData] = React.useState([1, 1, 1,1, 1, 1, 1, 1,])
+
     const handleExpandClick = () => {
         setExpanded(!expanded);
+        setComment(false);
+
     };
 
-    //
+    // details
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
 
+    // details
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    //--------------------------
+    const CommentClick = () => {
+        setComment(!comment);
+        setExpanded(false);
+
+    };
+
 
     return (
         <Card className={classes.root}>
@@ -85,7 +100,6 @@ const Post = () => {
                         onClose={handleClose}
                         >
                             <MenuItem onClick={handleClose}>Report</MenuItem>
-                            <MenuItem onClick={handleClose}>Save</MenuItem>
                     </Menu>
                     </IconButton>
                 }
@@ -115,7 +129,7 @@ const Post = () => {
             <CardActions disableSpacing>
 
                 <IconButton aria-label="add to favorites">
-                    <Chip size="small" label="12002" color="primary" className="m-2"/>
+                    <Chip size="small" label="120" color="primary" className="m-2"/>
                     <ThumbUpIcon fontSize="small"/>
                 </IconButton>
 
@@ -125,10 +139,15 @@ const Post = () => {
                 </IconButton>
 
 
-                <IconButton aria-label="add to favorites">
-                    <CommentIcon/>
+                <IconButton
+                    onClick={CommentClick}
+                    aria-expanded={comment}
+                    aria-label="show more"
+                >
+                    <CommentIcon titleAccess="Show Comments"/>
                 </IconButton>
 
+                {/* end first icons*/}
                 <IconButton
                     className={clsx(classes.expand, {
                         [classes.expandOpen]: expanded,
@@ -172,7 +191,41 @@ const Post = () => {
                     </Typography>
 
                 </CardContent>
+
             </Collapse>
+
+            {/* Comments */}
+
+            <Collapse in={comment} timeout="auto" unmountOnExit>
+                <CardContent>
+                    <Typography paragraph><strong>Comment</strong></Typography>
+
+                    <div className="input-group mb-3">
+                        <input type="text" className="form-control" placeholder="Comment..."
+                               aria-label="Recipient's username" aria-describedby="basic-addon2"/>
+                        <div className="input-group-append">
+                            <button className="btn btn-outline-secondary" type="button">Add</button>
+                        </div>
+                    </div>
+
+                    {
+                        commentsData.map(c => {
+                            return (
+                                <Typography paragraph>
+                                    <Alert severity="success" onClose={() => {
+                                    }}>
+                                        <AlertTitle>Ali - <small>2:30 pm</small> </AlertTitle> This is a Comment
+                                    </Alert>
+                                </Typography>
+                            )
+                        })
+                    }
+
+
+                </CardContent>
+
+            </Collapse>
+
         </Card>
     )
 }
