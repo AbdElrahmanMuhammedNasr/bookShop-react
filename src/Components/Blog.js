@@ -2,7 +2,7 @@ import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Post from "../UI/Post";
 import AddIcon from "@material-ui/icons/Add";
-import {Fab} from "@material-ui/core";
+import {Button, ButtonGroup, Fab} from "@material-ui/core";
 import {useHistory} from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import img from "../assest/bookimg2.jpg";
@@ -73,13 +73,11 @@ const Blog = () => {
                 <Post/>
                 <Post/>
                 <Post/>
-                <Post/>
-                <Post/>
-                <Post/>
-                <Post/>
+
+                <Button size="large" variant="contained" color="primary" >More</Button>
 
             </div>
         </>
     );
 }
-export default Blog;
+export default Blog

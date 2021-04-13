@@ -15,7 +15,7 @@ import img from '../assest/3.jpeg';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
-import {Chip} from "@material-ui/core";
+import {Chip, Paper, Snackbar} from "@material-ui/core";
 import {NavLink} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -28,65 +28,126 @@ const useStyles = makeStyles((theme) => ({
         height: 0,
         paddingTop: '56.25%', // 16:9
     },
+    chip: {
+        margin: theme.spacing(0.5),
+    },
+    pap: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        listStyle: 'none',
+        padding: theme.spacing(0.5),
+        boxShadow: '0px 0px 0px gray',
+        margin: '5% auto',
+
+
+    },
 
 
 }));
 
 const Book = () => {
     const classes = useStyles();
+    const [chipData, setChipData] = React.useState([
+        {key: 0, label: 'action'},
+        {key: 1, label: 'action'},
+        {key: 2, label: 'action'},
+        {key: 2, label: 'action'},
+    ]);
+
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClick = () => {
+        setOpen(true);
+        setTimeout(() => {
+            setOpen(false)
+        }, 1500)
+    };
+
 
     return (
-        <Card className={classes.root}>
-            <CardHeader className="float-left"
-                        avatar={
-                            <Avatar alt="Remy Sharp" src={img}></Avatar>
+        <>
+            {/*--------*/}
+            <Snackbar
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                }}
+                open={open}
+                message="Saved Book in Favorite"
 
-                        }
-                        action={
-                            <IconButton aria-label="share">
-                                <BookmarkBorderIcon/>
-                            </IconButton>
-                        }
-
-                        title="Tamer Ali"
-                        subheader="September 14, 2016"
             />
-            <CardMedia
-                className={classes.media}
-                image={book}
-                title="Paella dish"
-            />
-            <CardContent>
+            {/*------------*/}
+            <Card className={classes.root}>
+                <CardHeader className="float-left"
+                            avatar={
+                                <Avatar alt="Remy Sharp" src={img}></Avatar>
 
-                <Typography gutterBottom variant="h5" component="h2">
-                    Lizard Book
-                </Typography>
+                            }
+                            action={
+                                <IconButton aria-label="share">
+                                    <BookmarkBorderIcon onClick={handleClick}/>
+                                </IconButton>
+                            }
 
-                <Typography variant="body2" color="textSecondary" component="p">
-                    This impressive paella is a perfect party dish and a fun meal to cook together with your
-                    guests. Add 1 cup of frozen peas along with the mussels, if you like.
-                </Typography>
+                            title="Tamer Ali"
+                            subheader="September 14, 2016"
+                />
+                <CardMedia
+                    className={classes.media}
+                    image={book}
+                    title="Paella dish"
+                />
+                <CardContent>
 
-                <NavLink to="/homo">
-                    to Book
-                </NavLink>
+                    <Typography gutterBottom variant="h5" component="h2">
+                        Lizard Book
+                    </Typography>
 
-            </CardContent>
-            <CardActions disableSpacing className="d-flex justify-content-between">
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        This impressive paella is a perfect party dish and a fun meal to cook together with your
+                    </Typography>
 
-                <IconButton aria-label="add to favorites">
-                    <Chip size="small" label="12002" color="primary" className="m-2"/>
-                    <ThumbUpIcon fontSize="small"/>
-                </IconButton>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        <>
+                            <Paper component="ul" className={classes.pap}>
+                                {chipData.map((data) => {
 
-                <IconButton aria-label="share">
-                    <Chip size="small" label="12" className="m-2"/>
-                    <ThumbDownIcon fontSize="small"/>
-                </IconButton>
+                                    return (
+                                        <li key={data.key}>
+                                            <Chip
+                                                label={data.label}
+                                                className={classes.chip}
+                                            />
+                                        </li>
+                                    );
+                                })}
+
+                            </Paper>
+                        </>
+                    </Typography>
+
+                    <NavLink to="/homo">
+                        to Book
+                    </NavLink>
+
+                </CardContent>
+                <CardActions disableSpacing className="d-flex justify-content-between">
+
+                    <IconButton aria-label="add to favorites">
+                        <Chip size="small" label="12002" color="primary" className="m-2"/>
+                        <ThumbUpIcon fontSize="small"/>
+                    </IconButton>
+
+                    <IconButton aria-label="share">
+                        <Chip size="small" label="12" className="m-2"/>
+                        <ThumbDownIcon fontSize="small"/>
+                    </IconButton>
 
 
-            </CardActions>
-        </Card>
+                </CardActions>
+            </Card>
+        </>
     );
 }
 export default Book;

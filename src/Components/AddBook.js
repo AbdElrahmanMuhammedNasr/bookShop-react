@@ -1,7 +1,7 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import {Button, ButtonGroup, Chip, Paper} from "@material-ui/core";
+import {Button, ButtonGroup, Chip, FormHelperText, Paper} from "@material-ui/core";
 import uuid from 'react-uuid'
 
 const useStyles = makeStyles((theme) => ({
@@ -44,7 +44,9 @@ const AddBook = () => {
     };
 
     const addCategory = () => {
-        setChipData([...chipData, {key: uuid(), label: cat}]);
+        if(chipData.length <4){
+            setChipData([...chipData, {key: uuid(), label: cat}]);
+        }
     }
 
     return (
@@ -65,9 +67,16 @@ const AddBook = () => {
 
                 <TextField id="filled-basic"
                            variant="outlined"
-
                            label="Name"
                            placeholder="Book Name"
+                           fullWidth/>
+            </div>
+            <div className={classes.divStyle}>
+
+                <TextField id="filled-basic"
+                           variant="outlined"
+                           label="Link"
+                           placeholder="Book Link"
                            fullWidth/>
             </div>
             <div className={classes.divStyle}>
@@ -105,16 +114,20 @@ const AddBook = () => {
                            variant="outlined"
                            label="Category"
                            placeholder="Book Category"
+                           fullWidth
                            onChange={({target}) => setCat(target.value)}
                            onKeyPress={event => event.key === 'Enter' ? addCategory(event) : null}
                 />
+                <FormHelperText id="my-helper-text">Only 4 category</FormHelperText>
+
             </div>
+
             <br></br>
 
             {/* category*/}
 
             <ButtonGroup disableElevation variant="contained" color="primary">
-                <Button size="large" variant="outlined">Add</Button>
+                <Button size="large" variant="contained">Add</Button>
             </ButtonGroup>
         </form>
     );
