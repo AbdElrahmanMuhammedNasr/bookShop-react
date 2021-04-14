@@ -34,23 +34,40 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AddBook = () => {
+
+    const [img, setImg] = React.useState(null);
+    const [name, setName] = React.useState(null);
+    const [link, setLink] = React.useState(null);
+    const [snap, setSnap] = React.useState(null);
+    const [chipData, setChipData] = React.useState([]);
+
+
+
+
     const classes = useStyles();
 
-    const [chipData, setChipData] = React.useState([]);
     const [cat, setCat] = React.useState(null);
 
     const handleDelete = (chipToDelete) => () => {
-        setChipData((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));
+        setChipData((chips) => chips.filter((chip) => chip.label !== chipToDelete.label));
     };
 
-    const addCategory = () => {
+    const addCategory = (event) => {
+        event.preventDefault();
+
         if(chipData.length <4){
-            setChipData([...chipData, {key: uuid(), label: cat}]);
+            setChipData([...chipData, {label: cat}]);
         }
     }
+// ---------------------
 
+const add =(event)=>{
+    event.preventDefault();
+
+    console.log({img, name,link,snap,chipData})
+}
     return (
-        <form className={classes.root} noValidate autoComplete="off">
+        <form onSubmit={add} className={classes.root} noValidate autoComplete="off">
             <h3 style={{textAlign: 'center'}}>Add Book</h3>
 
             <div className={classes.divStyle}>
@@ -59,7 +76,10 @@ const AddBook = () => {
                            variant="outlined"
                            type="file"
                            placeholder="Book Image"
-                           fullWidth/>
+                           fullWidth
+                           onChange={(event)=>setImg(event.target.value)}
+
+                           />
             </div>
 
 
@@ -69,7 +89,9 @@ const AddBook = () => {
                            variant="outlined"
                            label="Name"
                            placeholder="Book Name"
-                           fullWidth/>
+                           fullWidth
+                           onChange={(event)=>setName(event.target.value)}
+                           />
             </div>
             <div className={classes.divStyle}>
 
@@ -77,14 +99,18 @@ const AddBook = () => {
                            variant="outlined"
                            label="Link"
                            placeholder="Book Link"
-                           fullWidth/>
+                           fullWidth
+                           onChange={(event)=>setLink(event.target.value)}
+                           />
             </div>
             <div className={classes.divStyle}>
                 <TextField id="filled-basic"
                            variant="outlined"
                            label="Snapshot"
                            placeholder="Book Snapshot"
-                           fullWidth/>
+                           fullWidth
+                           onChange={(event)=>setSnap(event.target.value)}
+                           />
             </div>
 
             {/* category*/}
@@ -95,7 +121,7 @@ const AddBook = () => {
                             {chipData.map((data) => {
 
                                 return (
-                                    <li key={data.key}>
+                                    <li key={uuid()}>
                                         <Chip
                                             label={data.label}
                                             onDelete={handleDelete(data)}
@@ -127,7 +153,7 @@ const AddBook = () => {
             {/* category*/}
 
             <ButtonGroup disableElevation variant="contained" color="primary">
-                <Button size="large" variant="contained">Add</Button>
+                <Button type='submit' size="large" variant="contained">Add</Button>
             </ButtonGroup>
         </form>
     );

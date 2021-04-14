@@ -222,7 +222,9 @@ export default function Header() {
                             color="inherit"
                         >
                             {/*<AccountCircle />*/}
-                            <Avatar alt="Remy Sharp" src={profile}   />
+                            {/* <Avatar alt="Remy Sharp" src={profile}   /> */}
+                            <Avatar>P</Avatar>
+
 
                         </IconButton>
 
